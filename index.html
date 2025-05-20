@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FitLog - Small Release</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="/script.js"></script>
+
+</head>
+<body>
+    <div class="mobile-frame">
+        <header class="top-bar">
+            <span class="app-name">FitLog</span>
+            <img src="images.avatar.png" alt="Usuário" class="user-avatar" />
+        </header>
+
+        <section class="calendar">
+            <div class="calendar-header">
+                <button onclick="changeMonth(-1)">&#8249;</button>
+                <span id="month-year"></span>
+                <button onclick="changeMonth(1)">&#8250;</button>
+            </div>
+            <div class="calendar-weekdays">
+                <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
+            </div>
+            <div class="calendar-days" id="calendar-days"></div>
+        </section>
+        
+        <section class="action-bar">
+            <span>Registrar exercício</span>
+            <div style="display: flex; gap: 8px;">
+                <button class="plus-button" onclick="addExercise()">+</button>
+                <button class="toggle-button" onclick="toggleExercises()">▼</button>
+            </div>
+        </section>
+        
+
+        <!-- 🔹 Campos adicionados dinamicamente -->
+        <div id="exercise-container" class="input-list"></div>
+
+        <!-- 🔹 Caixa de metas -->
+        <section class="box">
+            <div class="box-header">
+                <span>Adicionar meta</span>
+                <button class="plus-button small">+</button>
+            </div>
+        </section>
+
+        <!-- 🔹 Caixa de gráficos -->
+        <section class="box">
+            <h2>Gráficos</h2>
+            <!-- Conteúdo futuro -->
+        </section>
+    </div>
+</body>
+</html>
+
