@@ -44,3 +44,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+
+app.post('/cadastrarUsuario', (req, res)=>{
+  const nome = req.body.nomeInput
+  const senha = req.body.senhaInput
+})
