@@ -1,4 +1,4 @@
-import { KEY } from "./global";
+const {KEY} = require('./global.js')
 import { Treino } from "../model/Treino.js";
 
 let USUARIOS = JSON.parse(localStorage.getItem(KEY)) || [];

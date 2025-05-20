@@ -1,4 +1,4 @@
-export class Usuario{
+class Usuario{
 
     constructor(nome, senha, idade, peso, altura){
         this.nome = nome;
@@ -44,3 +44,5 @@ export class Usuario{
     }
 
 }
+
+module.exports = {Usuario}

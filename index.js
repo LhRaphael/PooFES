@@ -55,5 +55,5 @@ app.post('/cadastrarUsuario', (req, res)=>{
   const altura = req.body.alturaInput
   const senha = req.body.senhaInput
   criarUsuario(nome, senha, idade, peso, altura)
-  res.redirect('index.html')
+  res.redirect('/')
 })

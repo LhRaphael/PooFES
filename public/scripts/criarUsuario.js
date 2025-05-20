@@ -1,7 +1,9 @@
 const { Usuario } = require("../model/Usuario.js")
-const { KEY } = require("global.js")
+const { KEY } = require("./global.js")
+const { localStorage } = require('./global.js')
 
 function criarUsuario(nomeUser, senha, idade, peso, altura){
+    
     const USUARIO = new Usuario(nomeUser, senha, idade, peso, altura);
     const USUARIOS = JSON.parse(localStorage.getItem(KEY)) || [];
     USUARIOS.push(USUARIO)
@@ -9,5 +11,5 @@ function criarUsuario(nomeUser, senha, idade, peso, altura){
     console.log(USUARIOS)
     
 }
-module.exports = {criarUsuario}
 
+module.exports = {criarUsuario}
