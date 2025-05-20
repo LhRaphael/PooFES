@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>FitLog</h1>
+        <a href="" id="githubLink"><img src="" alt=""></a>
+        <button id="cadastrarButton">Cadastrar</button>
+    </header>
+
+    <main>
+        <form action="/tratamento" method="post">
+            <label for="nomeInput">Nome:</label>
+            <input type="text" id="nomeInput" name="nomeInput">
+
+            <label for="senhaInput">Senha: </label>
+            <input type="password" id="senhaInput" name="senhaInput">
+
+            <button type="submit">Entrar</button>
+
+            <a href="/templates/mudarSenha.html" id="esqueciLink" target="_self">Esqueci a senha</a>
+        </form>
+    </main>
+    
+    <footer>
+
+    </footer>
+    <script src="/mainScript.js" type="module"></script>
+</body>
+</html>
