@@ -1,4 +1,7 @@
 const { criarUsuario } =  require('./public/scripts/criarUsuario.js');
+const { validarUsuario } = require('./public/scripts/criarUsuario.js');
+const { existeUsuario } = require('./public/scripts/criarUsuario.js');
+const { alterarSenha } = require('./public/scripts/criarUsuario.js');
 
 const express = require('express');
 const path = require('path');  // Importa o módulo path
@@ -12,32 +15,42 @@ app.get('/', (req, res) => {
 app.use(express.urlencoded({ extended: true })); // para interpretar dados de formulários
 
 
-// TODO: Criar um sistema de autenticação mais robusto
 app.post('/tratamento', (req, res) => {
   const nome = req.body.nomeInput;
   const senha = req.body.senhaInput;
 
-
-  if (nome === 'usuario' && senha === '1234') {
+  if (validarUsuario(nome, senha)) {
     res.redirect('/templates/base.html');
-  } else if (nome === 'admin' && senha === 'admin') {
   } else {
-    res.send('Usuário ou senha inválidos.');
+    res.send(`
+      <script>
+        alert('Usuário ou senha inválidos!');
+        window.location.href = '/';
+      </script>
+    `);
   }
 });
 
 
-//TODO: Criar um sistema de autenticação mais robusto
 app.post('/mudarSenha', (req, res)=> {
+  const usuario = req.body.nomeSenhaInput;
   const senha = req.body.mudarSenhaInput;
-  const usuario = req.body.usuarioSenhaInput;
   console.log(usuario, senha);
 
- if(usuario){
-    res.redirect('index.html');
+ if(existeUsuario(usuario)){
+    alterarSenha(usuario, senha);
+    res.send(
+      `<script>
+        alert("Senha alterada com sucesso.")
+        window.location.href = '/';
+      </script>`);
  }
  else{
-    res.send(`<script>alert("Usuário ou senha inválidos.")</script>`);
+    res.send(
+      `<script>
+        alert("Usuário inexistente.")
+        window.location.href = '/';
+      </script>`);
  }
 });
 

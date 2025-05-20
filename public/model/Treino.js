@@ -1,10 +1,13 @@
 export class Treino{
-    constructor(nome, data, tipo, duracao, intensidade){
+    categorias = ["Peito", "Costas", "Perna", "Ombro", "Braço", "Abdômen", "Cardio"];
+
+    constructor(nome, data, series, repeticoes, nota, categoria){
         this.nome = nome;
         this.data = data;
-        this.tipo = tipo;
-        this.duracao = duracao;
-        this.intensidade = intensidade;
+        this.categoria = categoria;
+        this.series = series;
+        this.repeticoes = repeticoes;
+        this.nota = nota;
     }
 
     getNome(){
@@ -13,14 +16,14 @@ export class Treino{
     getData(){
         return this.data;
     }
-    getTipo(){
-        return this.tipo;
+    getSeries(){
+        return this.series;
     }
-    getDuracao(){
-        return this.duracao;
+    getRepeticoes(){
+        return this.repeticoes;
     }
-    getIntensidade(){
-        return this.intensidade;
+    getNota(){
+        return this.nota;
     }
 
     setNome(nome){
@@ -29,14 +32,13 @@ export class Treino{
     setData(data){
         this.data = data;
     }
-    setTipo(tipo){
-        this.tipo = tipo;
+    setSeries(series){
+        this.series = series;
     }
-    setDuracao(duracao){
-        this.duracao = duracao;
+    setRepeticoes(repeticoes){
+        this.repeticoes = repeticoes;
     }
-    setIntensidade(intensidade){
-        this.intensidade = intensidade;
+    setNota(nota){
+        this.nota = nota;
     }
-
 }
