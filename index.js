@@ -1,3 +1,5 @@
+const { criarUsuario } =  require('./public/scripts/criarUsuario.js');
+
 const express = require('express');
 const path = require('path');  // Importa o módulo path
 const app = express();
@@ -48,5 +50,10 @@ app.listen(PORT, () => {
 
 app.post('/cadastrarUsuario', (req, res)=>{
   const nome = req.body.nomeInput
+  const idade = req.body.idadeInput
+  const peso = req.body.pesoInput
+  const altura = req.body.alturaInput
   const senha = req.body.senhaInput
+  criarUsuario(nome, senha, idade, peso, altura)
+  res.redirect('index.html')
 })
