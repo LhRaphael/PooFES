@@ -3,6 +3,28 @@ import { Treino } from '../model/Treino.js'
 const KEY = 'chave'
 let USUARIOS = JSON.parse(localStorage.getItem(KEY)) || [];
 
+
+function usuarioAtual(){
+    
+}
+
+function save(array){
+    fetch('http://localhost:3000/atualizarUsuario', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', // Definindo o tipo de conteúdo como JSON
+        },
+        body: JSON.stringify(array) // Convertendo o array de objetos para JSON
+        })
+        .then(response => response.json()) // Parsing da resposta em JSON
+        .then(data => {
+            console.log('Resposta do servidor:', data); // Exibe a resposta processada do servidor
+        })
+        .catch(error => {
+            console.error('Erro ao enviar os dados:', error);
+        });
+}
+
 // TODO: Implementar a função para exibir os treinos cadastrados
 export function exibirTreinos(){
 
@@ -12,7 +34,6 @@ export function exibirTreinos(){
 // TODO: Implementar a função para cadastrar um treino
 export function cadastrarTreino(){
     let area = document.getElementById("treinosDiv");
-    area.innerHTML = ""; // Limpa a área de treinos para evitar duplicação
     let treino = new Treino();
     let secao = document.createElement("section");
     
@@ -28,6 +49,7 @@ export function cadastrarTreino(){
     repeticoesInput.setAttribute("type", "number");
     repeticoesInput.setAttribute("placeholder", "Total de repetições");
 
+    
     let categorias = document.createElement('select');
     for(let i = 0; i < treino.categorias.length; i++){
         let option = document.createElement('option');
@@ -35,12 +57,33 @@ export function cadastrarTreino(){
         option.text = treino.categorias[i];
         categorias.appendChild(option);
     }
+    
+    let confirmar = document.createElement('button')
+    confirmar.textContent = "Registrar"
+    confirmar.addEventListener('click',()=>{
+        treino.setNome(nomeInput.value)
+        treino.setSeries(Number(seriesInput.value))
+        treino.setRepeticoes(Number(repeticoesInput.value))
+        treino.setCategoria(categorias.value)
+
+        let usuario_atual = usuario(usuarioAtual)
+        usuario_atual.treinos.push(treino)
+
+        USUARIOS.map(u => u.nome === usuario_atual.nome ? usuario_atual : u)
+        
+
+            secao.remove()
+
+    })
+
 
     secao.appendChild(nomeInput);
     secao.appendChild(seriesInput);
     secao.appendChild(repeticoesInput);
     secao.appendChild(categorias);
+    secao.appendChild(confirmar)
     area.appendChild(secao);
+
 
 }
 

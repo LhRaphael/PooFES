@@ -2,6 +2,8 @@ const { criarUsuario } =  require('./public/scripts/criarUsuario.js');
 const { validarUsuario } = require('./public/scripts/criarUsuario.js');
 const { existeUsuario } = require('./public/scripts/criarUsuario.js');
 const { alterarSenha } = require('./public/scripts/criarUsuario.js');
+const { UsuarioAtual } = require('./public/scripts/global.js')
+const { atualizarUsuario } = require('./public/scripts/criarUsuario.js')
 
 const express = require('express');
 const path = require('path');  // Importa o módulo path
@@ -20,6 +22,7 @@ app.post('/tratamento', (req, res) => {
   const senha = req.body.senhaInput;
 
   if (validarUsuario(nome, senha)) {
+    UsuarioAtual(nome)
     res.redirect('/templates/base.html');
   } else {
     res.send(`
@@ -69,4 +72,8 @@ app.post('/cadastrarUsuario', (req, res)=>{
   const senha = req.body.senhaInput
   criarUsuario(nome, senha, idade, peso, altura)
   res.redirect('/')
+})
+
+app.post('/atualizarUsuario', (req, res)=>{
+  atualizarUsuario(req.body)
 })

@@ -25,6 +25,9 @@ export class Treino{
     getNota(){
         return this.nota;
     }
+    getCategoria(){
+        return this.categoria
+    }
 
     setNome(nome){
         this.nome = nome;
@@ -40,5 +43,8 @@ export class Treino{
     }
     setNota(nota){
         this.nota = nota;
+    }
+    setCategoria(categoria){
+        this.categoria = categoria
     }
 }

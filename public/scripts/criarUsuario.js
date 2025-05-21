@@ -7,7 +7,7 @@ function criarUsuario(nomeUser, senha, idade, peso, altura){
     const USUARIO = new Usuario(nomeUser, senha, idade, peso, altura);
     const USUARIOS = JSON.parse(localStorage.getItem(KEY)) || [];
     USUARIOS.push(USUARIO)
-    localStorage.setItem(KEY,JSON.stringify(USUARIOS));
+    atualizarUsuarios(USUARIOS)
     console.log(USUARIOS)
     
 }
@@ -35,4 +35,11 @@ function alterarSenha(nomeUser, senha){
     console.log(USUARIOS)
 }
 
-module.exports = {criarUsuario, validarUsuario, existeUsuario, alterarSenha}
+function atualizarUsuarios(usuarios){
+    localStorage.setItem(KEY,JSON.stringify(usuarios))
+    console.log(JSON.parse(localStorage.getItem(KEY)))
+}
+
+
+
+module.exports = {criarUsuario, validarUsuario, existeUsuario, alterarSenha, atualizarUsuarios}
