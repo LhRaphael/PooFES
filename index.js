@@ -2,13 +2,15 @@ const { criarUsuario } =  require('./public/scripts/criarUsuario.js');
 const { validarUsuario } = require('./public/scripts/criarUsuario.js');
 const { existeUsuario } = require('./public/scripts/criarUsuario.js');
 const { alterarSenha } = require('./public/scripts/criarUsuario.js');
-const { UsuarioAtual } = require('./public/scripts/global.js')
+const { getLocalStorage } = require('./public/scripts/criarUsuario.js')
 const { atualizarUsuario } = require('./public/scripts/criarUsuario.js')
 
 const express = require('express');
 const path = require('path');  // Importa o módulo path
 const app = express();
 const PORT = 3000;
+
+let USUARIOATUAL = ''
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -22,7 +24,7 @@ app.post('/tratamento', (req, res) => {
   const senha = req.body.senhaInput;
 
   if (validarUsuario(nome, senha)) {
-    UsuarioAtual(nome)
+    USUARIOATUAL = nome
     res.redirect('/templates/base.html');
   } else {
     res.send(`
@@ -76,4 +78,14 @@ app.post('/cadastrarUsuario', (req, res)=>{
 
 app.post('/atualizarUsuario', (req, res)=>{
   atualizarUsuario(req.body)
+})
+
+app.get('/coletarUsuario', (req,res)=>{
+  let usuario = validarUsuario(USUARIOATUAL)
+  res.json(usuario)
+})
+
+app.get('/coletarLocalStorage',(req,res)={
+  let localstorage = getLocalStorage()
+  res.json(local)
 })

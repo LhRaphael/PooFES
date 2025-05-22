@@ -4,8 +4,19 @@ const KEY = 'chave'
 let USUARIOS = JSON.parse(localStorage.getItem(KEY)) || [];
 
 
-function usuarioAtual(){
-    
+//TODO: implementar função para coletar o local storage
+
+async function usuarioAtual(){
+    const url = 'http://localhost:3000/coletarUsuario';  // URL do servidor
+
+    try {
+      const response = await fetch(url);
+      const data = await response.text();  // Obtém a resposta como texto
+      return data;  // Retorna o texto recebido
+    } catch (error) {
+      console.error('Erro ao obter o dado do servidor:', error);
+      throw error;  // Lança o erro caso algo dê errado
+    }
 }
 
 function save(array){
@@ -66,13 +77,12 @@ export function cadastrarTreino(){
         treino.setRepeticoes(Number(repeticoesInput.value))
         treino.setCategoria(categorias.value)
 
-        let usuario_atual = usuario(usuarioAtual)
+        let usuario_atual = usuarioAtual()
         usuario_atual.treinos.push(treino)
 
         USUARIOS.map(u => u.nome === usuario_atual.nome ? usuario_atual : u)
-        
-
-            secao.remove()
+        save(USUARIOS)
+        secao.remove()
 
     })
 
