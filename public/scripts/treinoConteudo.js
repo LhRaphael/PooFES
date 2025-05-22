@@ -1,22 +1,43 @@
 import { Treino } from '../model/Treino.js'
 
-const KEY = 'chave'
-let USUARIOS = JSON.parse(localStorage.getItem(KEY)) || [];
 
+async function usuarios(){
+    const url = 'http://localhost:3000/coletarLocalStorage';  // URL do servidor
 
-//TODO: implementar função para coletar o local storage
+    try {
+      const response = await fetch(url);
+      const data = await response.json();  // Obtém a resposta como texto
+      return data;  // Retorna o texto recebido
+    } catch (error) {
+      console.error('Erro ao obter o dado do servidor:', error);
+      throw error;  // Lança o erro caso algo dê errado
+    }
+}
+
 
 async function usuarioAtual(){
     const url = 'http://localhost:3000/coletarUsuario';  // URL do servidor
 
     try {
       const response = await fetch(url);
-      const data = await response.text();  // Obtém a resposta como texto
+      const data = await response.json();  // Obtém a resposta como texto
       return data;  // Retorna o texto recebido
     } catch (error) {
       console.error('Erro ao obter o dado do servidor:', error);
       throw error;  // Lança o erro caso algo dê errado
     }
+}
+
+async function processoUsuario(treino){
+    let usuario_atual = await usuarioAtual()
+    console.log(usuario_atual)
+    usuario_atual.treinos.push(treino)
+
+    let USUARIOS = await usuarios()
+    
+    USUARIOS.map(u => u.nome === usuario_atual.nome ? usuario_atual : u)
+    console.log(USUARIOS)
+    save(USUARIOS)
 }
 
 function save(array){
@@ -27,7 +48,7 @@ function save(array){
         },
         body: JSON.stringify(array) // Convertendo o array de objetos para JSON
         })
-        .then(response => response.json()) // Parsing da resposta em JSON
+        .then(response => response.text()) 
         .then(data => {
             console.log('Resposta do servidor:', data); // Exibe a resposta processada do servidor
         })
@@ -36,11 +57,15 @@ function save(array){
         });
 }
 
+
+
 // TODO: Implementar a função para exibir os treinos cadastrados
 export function exibirTreinos(){
 
 
 }
+
+
 
 // TODO: Implementar a função para cadastrar um treino
 export function cadastrarTreino(){
@@ -77,13 +102,8 @@ export function cadastrarTreino(){
         treino.setRepeticoes(Number(repeticoesInput.value))
         treino.setCategoria(categorias.value)
 
-        let usuario_atual = usuarioAtual()
-        usuario_atual.treinos.push(treino)
-
-        USUARIOS.map(u => u.nome === usuario_atual.nome ? usuario_atual : u)
-        save(USUARIOS)
+        processoUsuario(treino)
         secao.remove()
-
     })
 
 
@@ -93,7 +113,5 @@ export function cadastrarTreino(){
     secao.appendChild(categorias);
     secao.appendChild(confirmar)
     area.appendChild(secao);
-
-
 }
 

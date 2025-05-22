@@ -1,9 +1,10 @@
+
 const { criarUsuario } =  require('./public/scripts/criarUsuario.js');
 const { validarUsuario } = require('./public/scripts/criarUsuario.js');
 const { existeUsuario } = require('./public/scripts/criarUsuario.js');
 const { alterarSenha } = require('./public/scripts/criarUsuario.js');
 const { getLocalStorage } = require('./public/scripts/criarUsuario.js')
-const { atualizarUsuario } = require('./public/scripts/criarUsuario.js')
+const { atualizarUsuarios } = require('./public/scripts/criarUsuario.js')
 
 const express = require('express');
 const path = require('path');  // Importa o módulo path
@@ -77,15 +78,19 @@ app.post('/cadastrarUsuario', (req, res)=>{
 })
 
 app.post('/atualizarUsuario', (req, res)=>{
-  atualizarUsuario(req.body)
+  const usuarios = req.body;
+  console.log(usuarios)
+  atualizarUsuarios(usuarios)
 })
 
 app.get('/coletarUsuario', (req,res)=>{
-  let usuario = validarUsuario(USUARIOATUAL)
+  console.log(USUARIOATUAL)
+  let usuario = existeUsuario(USUARIOATUAL)
+  console.log(usuario)
   res.json(usuario)
 })
 
-app.get('/coletarLocalStorage',(req,res)={
+app.get('/coletarLocalStorage',(req,res)=>{
   let localstorage = getLocalStorage()
-  res.json(local)
+  res.json(localstorage)
 })
