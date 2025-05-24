@@ -89,9 +89,6 @@ export async function exibirTreinos(){
     }
 }
 
-
-
-// TODO: Implementar a função para cadastrar um treino
 export function cadastrarTreino(){
     let area = document.getElementById("treinosDiv");
 
@@ -100,6 +97,7 @@ export function cadastrarTreino(){
     
     let treino = new Treino();
     let secao = document.createElement("section");
+    secao.setAttribute("class", "registrar-treino");
     
     let nomeInput = document.createElement("input");
     nomeInput.setAttribute("type", "text");

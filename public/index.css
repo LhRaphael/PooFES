@@ -1,0 +1,154 @@
+/* Estilos gerais para o corpo e elementos básicos */
+body {
+    font-family: 'Arial', sans-serif; /* Fonte padrão e amigável */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Cor de fundo suave */
+    color: #333; /* Cor de texto principal */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o rodapé fique no final da tela */
+}
+
+header {
+    background-color: #333; /* Cor de fundo escura para o cabeçalho */
+    color: #fff; /* Cor do texto do cabeçalho */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between; /* Alinha itens nas extremidades */
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em; /* Tamanho do título */
+}
+
+#cadastrarButton {
+    background-color: #5cb85c; /* Verde para o botão de cadastrar */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease; /* Transição suave */
+}
+
+#cadastrarButton:hover {
+    background-color: #4cae4c; /* Cor ao passar o mouse */
+}
+
+#githubLink img {
+    width: 30px; /* Tamanho do ícone do GitHub */
+    height: auto;
+    vertical-align: middle; /* Alinha verticalmente com o texto/botão */
+}
+
+main {
+    flex-grow: 1; /* Faz o main ocupar o espaço restante */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o formulário */
+    justify-content: center; /* Centraliza verticalmente se houver pouco conteúdo */
+}
+
+form {
+    background-color: #fff; /* Fundo branco para o formulário */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+    width: 100%;
+    max-width: 400px; /* Largura máxima para o formulário */
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+
+form label {
+    display: block; /* Faz o label ocupar a linha inteira */
+    margin-bottom: 8px;
+    font-weight: bold; /* Destaca o label */
+    font-size: 1em;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+    font-size: 1em;
+}
+
+form button[type="submit"] {
+    background-color: #007bff; /* Azul para o botão de entrar */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    width: 100%; /* Botão ocupa a largura total */
+    margin-bottom: 15px; /* Espaço abaixo do botão */
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#esqueciLink {
+    display: block; /* Faz o link ocupar a linha inteira */
+    text-align: center; /* Centraliza o texto do link */
+    color: #007bff; /* Cor do link */
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+#esqueciLink:hover {
+    text-decoration: underline; /* Sublinha ao passar o mouse */
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    /* Se quiser que o rodapé fique fixo na parte inferior:
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    */
+}
+
+/* Ajustes específicos para telas menores, caso necessário no futuro.
+   Para 6.5 polegadas, os estilos acima já devem funcionar bem,
+   mas media queries podem ser úteis para telas ainda menores ou maiores.
+*/
+
+/* Exemplo de media query para telas muito pequenas (menos de 360px de largura) */
+@media (max-width: 359px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    #cadastrarButton {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    form input[type="text"],
+    form input[type="password"],
+    form button[type="submit"] {
+        font-size: 0.95em;
+        padding: 10px;
+    }
+}

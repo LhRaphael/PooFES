@@ -7,6 +7,7 @@ class Usuario{
         this.peso = peso;
         this.altura = altura;
         this.treinos = [];
+        this.imc = this.calcularIMC();
     }
 
     getNome(){

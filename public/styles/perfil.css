@@ -1,0 +1,190 @@
+/* Estilos gerais (reutilizando e adaptando) */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #333; /* Ou sua cor de marca principal */
+    color: #fff;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center; /* Alinha verticalmente a imagem e o título */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header img { /* Imagem de perfil no cabeçalho */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover; /* Garante que a imagem preencha sem distorcer */
+    margin-right: 15px;
+    background-color: #ddd; /* Placeholder se src estiver vazio */
+    border: 2px solid #fff;
+}
+
+header a { /* Link que envolve o H1 */
+    text-decoration: none;
+    color: inherit; /* Herda a cor do header (branco) */
+    display: flex; /* Para alinhar com outros elementos se necessário */
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espaço entre #dadosDiv e #registrosDiv */
+}
+
+/* Estilo para a seção de Dados do Usuário */
+#dadosDiv {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#dadosDiv ul {
+    list-style-type: none; /* Remove marcadores da lista */
+    padding: 0;
+    margin: 0;
+}
+
+#dadosDiv li {
+    padding: 12px 5px; /* Adicionado padding horizontal pequeno */
+    border-bottom: 1px solid #f0f0f0; /* Linha divisória mais suave */
+    display: flex;
+    justify-content: space-between; /* Alinha label à esquerda e valor à direita */
+    align-items: center;
+    font-size: 1em;
+}
+
+#dadosDiv li:last-child {
+    border-bottom: none; /* Remove a borda do último item */
+}
+
+#dadosDiv li strong {
+    color: #333; /* Cor do rótulo (Nome, Idade, etc.) */
+    margin-right: 10px; /* Espaço entre o rótulo e o valor */
+}
+
+#dadosDiv li span {
+    color: #555; /* Cor do valor */
+    text-align: right; /* Alinha o valor à direita */
+    /* Os IDs nos spans (#nomeUsuario, etc.) são mais para JS,
+       mas podem ser usados para estilização específica se necessário */
+}
+
+/* Estilo para a seção de Registros/Evolução */
+#registrosDiv {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#registrosDiv h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+#registrosDiv .content {
+    /* Placeholder para a galeria de fotos de evolução */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Grid responsivo */
+    gap: 10px;
+    padding: 10px;
+    min-height: 150px; /* Altura mínima para visualização */
+    background-color: #f8f9fa;
+    border: 1px dashed #ced4da;
+    border-radius: 6px;
+    margin-bottom: 20px; /* Espaço antes do botão */
+}
+
+#registrosDiv .content img { /* Estilo para imagens dentro da galeria */
+    width: 100%;
+    height: 100px; /* Altura fixa para as miniaturas, ajuste conforme necessário */
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+
+#registrosDiv #adicionarButton {
+    background-color: #007bff; /* Azul para adicionar */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    text-align: center;
+    width: 100%; /* Botão ocupa toda a largura */
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+#registrosDiv #adicionarButton:hover {
+    background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 0.9em;
+    margin-top: auto; /* Garante que o rodapé fique no final se o conteúdo for pequeno */
+}
+
+/* Ajustes finos para telas muito pequenas (opcional) */
+@media (max-width: 360px) {
+    header {
+        padding: 10px 15px;
+    }
+    header img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+    header h1 {
+        font-size: 1.6em;
+    }
+    main {
+        padding: 15px;
+        gap: 20px;
+    }
+    #dadosDiv li {
+        font-size: 0.95em;
+        padding: 10px 0;
+    }
+    #registrosDiv h2 {
+        font-size: 1.4em;
+    }
+    #registrosDiv #adicionarButton {
+        padding: 10px 18px;
+        font-size: 0.95em;
+    }
+}

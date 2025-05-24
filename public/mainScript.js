@@ -1,6 +1,7 @@
 import { linker } from "./scripts/linkers.js";
 import { cadastrarTreino } from "./scripts/treinoConteudo.js";
 import { exibirTreinos } from "./scripts/treinoConteudo.js";
+import { exibirDados } from "./scripts/perfil.js";
 
 const CADASTRARBUTTON = document.getElementById("cadastrarButton");
 if(CADASTRARBUTTON){
@@ -23,4 +24,9 @@ if(MOSTRARTREINO){
             exibirTreinos()
         }
     })
+}
+
+const DADOSUSUARIO = document.getElementById("dadosDiv");
+if(DADOSUSUARIO){
+    exibirDados()
 }

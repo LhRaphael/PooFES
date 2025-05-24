@@ -1,0 +1,314 @@
+/* Estilos gerais (reutilizando e adaptando do anterior) */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Um cinza um pouco diferente para o fundo geral */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #333; /* Pode ser uma cor da sua marca, ex: #2c3e50 */
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Faz o cabeçalho fixar no topo ao rolar */
+    top: 0;
+    z-index: 1000; /* Garante que o header fique sobre outros elementos */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+#usuarioLink img {
+    width: 40px; /* Tamanho da imagem de perfil */
+    height: 40px;
+    border-radius: 50%; /* Deixa a imagem redonda */
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    background-color: #ddd; /* Cor de fundo caso a imagem não carregue */
+    border: 2px solid #fff; /* Borda opcional */
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espaço entre as seções principais (treinos, metas, gráficos) */
+}
+
+/* Estilo base para as seções principais no main */
+#treinosDiv,
+#metasDiv,
+#graficosDiv {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#treinosDiv h2,
+#metasDiv h2,
+#graficosDiv h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Estilos específicos para a Div de Treinos */
+#treinosDiv {
+    /* Estilos adicionais se necessário */
+}
+
+#exibirTreino,
+#adicionarButton {
+    background-color: #007bff; /* Azul padrão */
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Para que fiquem na mesma linha se houver espaço, ou um abaixo do outro */
+    margin-bottom: 15px; /* Espaçamento abaixo dos botões */
+}
+
+#adicionarButton {
+    background-color: #28a745; /* Verde para adicionar */
+    display: block; /* Como estava no seu HTML, faz ocupar a largura */
+    width: 100%; /* Para ocupar a largura toda se for block */
+    box-sizing: border-box; /* Para o padding não aumentar a largura total */
+}
+
+#exibirTreino:hover,
+#adicionarButton:hover {
+    opacity: 0.9;
+}
+
+#treinoConteudo {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre cada card de treino */
+}
+
+.treino {
+    background-color: #f9f9f9; /* Fundo levemente diferente para o card */
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+
+.treino h2 { /* Título do exercício específico */
+    font-size: 1.2em;
+    color: #007bff; /* Cor de destaque para o nome do treino */
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: none; /* Remove a borda do h2 geral das seções */
+    padding-bottom: 0;
+}
+.treino h2:empty::before { /* Estilo para quando o h2 está vazio */
+    content: "Nome do Exercício"; /* Placeholder */
+    color: #888;
+    font-style: italic;
+}
+
+
+.treino p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: #555;
+}
+
+.treino p strong { /* Se você usar <strong> para os rótulos como "Séries:" */
+    color: #333;
+}
+
+/* Estilos para o formulário de registro de treino */
+.registrar-treino {
+    background-color: #f8f9fa; /* Um fundo ligeiramente diferente */
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    margin-top: 25px; /* Espaço acima do formulário */
+    margin-bottom: 20px; /* Espaço abaixo do formulário */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column; /* Empilha os campos verticalmente */
+    gap: 15px; /* Espaço entre os campos do formulário */
+}
+
+.registrar-treino input[type="text"],
+.registrar-treino input[type="number"],
+.registrar-treino select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box; /* Garante que padding não aumente a largura total */
+    font-size: 1em;
+    background-color: #fff; /* Fundo branco para campos */
+}
+
+.registrar-treino input[type="text"]::placeholder,
+.registrar-treino input[type="number"]::placeholder {
+    color: #6c757d; /* Cor do placeholder */
+}
+
+.registrar-treino select {
+    /* Para navegadores que permitem, remove a aparência padrão para melhor consistência */
+    /* -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; */
+    /* Se você descomentar o trecho acima, pode ser necessário adicionar um ícone de seta personalizado */
+    /* background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px auto; */
+    padding-right: 30px; /* Espaço para a seta (se personalizada) */
+}
+
+
+/* Estilo para os botões dentro do formulário */
+.registrar-treino .btn-submit-treino,
+.registrar-treino .btn-cancelar-treino {
+    padding: 12px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 100%; /* Botões ocupam a largura total, bom para mobile */
+    box-sizing: border-box;
+    font-weight: bold;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.registrar-treino .btn-submit-treino {
+    background-color: #28a745; /* Verde para registrar (sucesso) */
+    color: white;
+}
+
+.registrar-treino .btn-cancelar-treino {
+    background-color: #dc3545; /* Vermelho para cancelar (perigo/atenção) */
+    color: white;
+    /* Você pode optar por um estilo menos chamativo para cancelar:
+    background-color: #6c757d; (cinza)
+    color: white;
+    */
+    /* Ou um botão "outline":
+    background-color: transparent;
+    color: #6c757d;
+    border: 1px solid #6c757d;
+    */
+}
+
+.registrar-treino .btn-submit-treino:hover,
+.registrar-treino .btn-cancelar-treino:hover {
+    opacity: 0.85;
+}
+
+/* Opcional: Se quiser os botões lado a lado em telas um pouco maiores
+   (para telas de 6.5 polegadas, empilhados costuma ser melhor, mas como opção)
+@media (min-width: 480px) {
+    .registrar-treino {
+        display: grid;
+        grid-template-columns: 1fr 1fr; // Cria duas colunas
+        gap: 15px 20px; // Espaço vertical e horizontal
+    }
+
+    .registrar-treino input[type="text"] {
+        grid-column: 1 / -1; // Ocupa todas as colunas
+    }
+    // .registrar-treino select { // Se quiser que o select ocupe a linha toda também
+    //     grid-column: 1 / -1;
+    // }
+
+    .registrar-treino .btn-submit-treino,
+    .registrar-treino .btn-cancelar-treino {
+        width: auto; // Permite que os botões tenham larguras diferentes
+        // grid-column: span 1; // Cada botão em uma coluna
+    }
+    .registrar-treino .btn-submit-treino {
+         grid-column: 1 / 2;
+    }
+    .registrar-treino .btn-cancelar-treino {
+         grid-column: 2 / 3;
+    }
+}
+*/
+
+/* Estilos para Metas e Gráficos (podem ser expandidos) */
+#metasDiv,
+#graficosDiv {
+    /* Adicione estilos específicos quando o conteúdo for definido */
+    /* Exemplo: se houver uma lista de metas */
+    /*
+    #metasDiv ul {
+        list-style: none;
+        padding: 0;
+    }
+    #metasDiv li {
+        padding: 8px 0;
+        border-bottom: 1px dashed #eee;
+    }
+    #metasDiv li:last-child {
+        border-bottom: none;
+    }
+    */
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 0.9em;
+    margin-top: auto; /* Empurra o rodapé para baixo se o conteúdo for pequeno */
+}
+
+/* Media Query para ajustes finos se necessário (opcional para este caso) */
+@media (max-width: 360px) {
+    header h1 {
+        font-size: 1.6em;
+    }
+
+    #usuarioLink img {
+        width: 35px;
+        height: 35px;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    #treinosDiv h2,
+    #metasDiv h2,
+    #graficosDiv h2 {
+        font-size: 1.3em;
+    }
+
+    .treino p {
+        font-size: 0.9em;
+    }
+
+    #exibirTreino,
+    #adicionarButton {
+        padding: 8px 15px;
+        font-size: 0.95em;
+    }
+}

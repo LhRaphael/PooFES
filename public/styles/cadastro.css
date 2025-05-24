@@ -1,0 +1,142 @@
+/* Estilos gerais (reutilizando e adaptando do primeiro exemplo) */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Cor de fundo suave */
+    color: #333; /* Cor de texto principal */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o rodapé fique no final da tela */
+}
+
+header {
+    background-color: #333; /* Cor de fundo escura para o cabeçalho */
+    color: #fff; /* Cor do texto do cabeçalho */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between; /* Alinha itens nas extremidades */
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header a { /* Estilo para os links no cabeçalho */
+    text-decoration: none;
+    color: inherit; /* Herda a cor do elemento pai (header) */
+    display: flex; /* Para alinhar h1 com outros elementos se necessário */
+    align-items: center;
+}
+
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+#githubLink img {
+    width: 30px; /* Tamanho do ícone do GitHub */
+    height: 30px; /* Altura explícita para consistência */
+    vertical-align: middle; /* Alinha verticalmente */
+    background-color: #ccc; /* Cor de fundo se a imagem não carregar ou src for vazio */
+    border-radius: 50%; /* Opcional: para deixar redondo se for um ícone de avatar */
+}
+
+main {
+    flex-grow: 1; /* Faz o main ocupar o espaço restante */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o formulário horizontalmente */
+    justify-content: center; /* Centraliza o formulário verticalmente (útil se houver pouco conteúdo) */
+    margin-top: 20px; /* Adiciona um espaço no topo do main */
+    margin-bottom: 20px; /* Adiciona um espaço na base do main */
+}
+
+form {
+    background-color: #fff; /* Fundo branco para o formulário */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+    width: 100%;
+    max-width: 450px; /* Largura máxima para o formulário, um pouco maior para acomodar mais campos */
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+
+form label {
+    display: block; /* Faz o label ocupar a linha inteira */
+    margin-bottom: 8px;
+    font-weight: bold; /* Destaca o label */
+    font-size: 1em;
+    color: #333; /* Cor escura para o label */
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px; /* Um pouco mais de espaço entre os inputs */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+    font-size: 1em;
+    background-color: #fdfdfd; /* Fundo levemente off-white para inputs */
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form input[type="password"]:focus {
+    border-color: #007bff; /* Destaque na borda ao focar */
+    outline: none; /* Remove o outline padrão do navegador */
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); /* Sombra sutil ao focar */
+}
+
+form button[type="submit"] {
+    background-color: #28a745; /* Verde para o botão de cadastrar */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    width: 100%; /* Botão ocupa a largura total */
+    margin-top: 10px; /* Espaço acima do botão */
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #218838; /* Verde mais escuro ao passar o mouse */
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 0.9em;
+    /* margin-top: auto;  Removido pois o main já tem flex-grow e margens */
+}
+
+/* Ajustes para telas muito pequenas (opcional) */
+@media (max-width: 360px) {
+    header h1 {
+        font-size: 1.6em;
+    }
+    form {
+        padding: 20px;
+    }
+    form input[type="text"],
+    form input[type="number"],
+    form input[type="password"],
+    form button[type="submit"] {
+        font-size: 0.95em;
+        padding: 10px;
+    }
+    main {
+        padding: 15px;
+    }
+}
