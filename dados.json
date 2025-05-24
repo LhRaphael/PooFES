@@ -1,10 +1,1 @@
-[
-  {
-    "nome": "bruna",
-    "senha": "123456",
-    "idade": "22",
-    "peso": "90",
-    "altura": "165",
-    "treinos": []
-  }
-]
+[{"nome":"bruna","senha":"123456","idade":"22","peso":"90","altura":"165","treinos":[]},{"nome":"rafael","senha":"1111","idade":"11","peso":"11","altura":"11","treinos":[{"categorias":["Peito","Costas","Perna","Ombro","Braço","Abdômen","Cardio"],"nome":"","categoria":"Peito","series":0,"repeticoes":0},{"categorias":["Peito","Costas","Perna","Ombro","Braço","Abdômen","Cardio"],"nome":"","categoria":"Peito","series":0,"repeticoes":0},{"categorias":["Peito","Costas","Perna","Ombro","Braço","Abdômen","Cardio"],"nome":"","categoria":"Peito","series":0,"repeticoes":0},{"categorias":["Peito","Costas","Perna","Ombro","Braço","Abdômen","Cardio"],"nome":"","data":"5/24/2025","categoria":"Peito","series":0,"repeticoes":0}]}]

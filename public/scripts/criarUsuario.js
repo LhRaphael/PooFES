@@ -3,14 +3,14 @@ const { Usuario } = require("../model/Usuario.js")
 const fs = require('fs');
 const path = require('path');
 
+
 const FILE_PATH = path.resolve(__dirname, '../../dados.json');
 
 function criarUsuario(nomeUser, senha, idade, peso, altura){
     const USUARIO = new Usuario(nomeUser, senha, idade, peso, altura);
     const USUARIOS = getLocalStorage();
     USUARIOS.push(USUARIO)
-    atualizarUsuarios(USUARIOS)
-    console.log(USUARIOS)
+    atualizarUsuarios(JSON.stringify(USUARIOS));
     
 }
 
@@ -32,9 +32,8 @@ function alterarSenha(nomeUser, senha){
     const usuario = USUARIOS.find(usuario => usuario.nome === nomeUser);
     if(usuario){
         usuario.senha = senha;
-        localStorage.setItem(KEY,JSON.stringify(USUARIOS));
+        atualizarUsuarios(JSON.stringify(USUARIOS));
     }
-    console.log(USUARIOS)
 }
 
 // Lê os usuários do arquivo

@@ -28,18 +28,22 @@ async function usuarioAtual(){
     }
 }
 
-async function processoUsuario(treino){
-    let usuario_atual = await usuarioAtual()
-    console.log(usuario_atual)
-    usuario_atual.treinos.push(treino)
+async function processoUsuario(treino) {
+    let usuario_atual = await usuarioAtual();
+    usuario_atual.treinos.push(treino);
 
-    let USUARIOS = await usuarios()
-    
-    USUARIOS.map(u => u.nome === usuario_atual.nome ? usuario_atual : u)
-    console.log(USUARIOS)
-    save(USUARIOS)
+    let TODOS_USUARIOS = await usuarios(); // Renomeei para clareza
+
+    // Atualiza a lista de usuários com o usuário modificado
+    const usuariosAtualizados = TODOS_USUARIOS.map(u => {
+        if (u.nome === usuario_atual.nome) {
+            return usuario_atual; // Substitui o usuário antigo pelo atualizado
+        }
+        return u; // Mantém os outros usuários como estão
+    });
+
+    save(usuariosAtualizados); // Envia a lista ATUALIZADA
 }
-
 function save(array){
     fetch('http://localhost:3000/atualizarUsuario', {
         method: 'POST',
@@ -60,9 +64,29 @@ function save(array){
 
 
 // TODO: Implementar a função para exibir os treinos cadastrados
-export function exibirTreinos(){
-
-
+export async function exibirTreinos(){
+    let area = document.getElementById("treinoConteudo");
+    let usuario = await usuarioAtual()
+    console.log(usuario);
+    let treinos = usuario.treinos;
+    if(treinos.length > 0){
+        for(let i = 0; i < treinos.length; i++){
+            let treino = treinos[i];
+            let secao = document.createElement("section");
+            secao.setAttribute("class", "treino");
+            secao.innerHTML = `
+                <h2>${treino.nome}</h2>
+                <p>Series: ${treino.series}</p>
+                <p>Repetições: ${treino.repeticoes}</p>
+                <p>Categoria: ${treino.categoria}</p>
+                <p>Data: ${treino.data}</p>
+            `;
+            area.appendChild(secao);
+        }
+    }
+    else{
+        area.innerHTML = "<h2>Nenhum treino cadastrado</h2>";
+    }
 }
 
 
@@ -70,6 +94,10 @@ export function exibirTreinos(){
 // TODO: Implementar a função para cadastrar um treino
 export function cadastrarTreino(){
     let area = document.getElementById("treinosDiv");
+
+    let ativado = document.getElementById("adicionarButton");
+    ativado.style.display = "none"; // para impedir que o botão de adicionar treino apareça mais de uma vez
+    
     let treino = new Treino();
     let secao = document.createElement("section");
     
@@ -101,10 +129,20 @@ export function cadastrarTreino(){
         treino.setSeries(Number(seriesInput.value))
         treino.setRepeticoes(Number(repeticoesInput.value))
         treino.setCategoria(categorias.value)
+        let data = new Date();
+        treino.setData(data.toLocaleDateString())
 
         processoUsuario(treino)
         secao.remove()
+        ativado.style.display = "block";
     })
+
+    let cancelar = document.createElement('button')
+    cancelar.textContent = "Cancelar"
+    cancelar.addEventListener('click',()=>{
+        secao.remove()
+        ativado.style.display = "block";
+    })  
 
 
     secao.appendChild(nomeInput);
@@ -112,6 +150,7 @@ export function cadastrarTreino(){
     secao.appendChild(repeticoesInput);
     secao.appendChild(categorias);
     secao.appendChild(confirmar)
+    secao.appendChild(cancelar);
     area.appendChild(secao);
 }
 

@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(express.urlencoded({ extended: true })); // para interpretar dados de formulários
-
+app.use(express.json()); // para interpretar JSON
 
 app.post('/tratamento', (req, res) => {
   const nome = req.body.nomeInput;
@@ -79,14 +79,11 @@ app.post('/cadastrarUsuario', (req, res)=>{
 
 app.post('/atualizarUsuario', (req, res)=>{
   const usuarios = req.body;
-  console.log(usuarios)
-  atualizarUsuarios(usuarios)
+  atualizarUsuarios(JSON.stringify(usuarios));
 })
 
 app.get('/coletarUsuario', (req,res)=>{
-  console.log(USUARIOATUAL)
   let usuario = existeUsuario(USUARIOATUAL)
-  console.log(usuario)
   res.json(usuario)
 })
 
